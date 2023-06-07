@@ -18,8 +18,8 @@ class LandingPageController extends Controller
     function dashboard_admin(){
         $countUsers = DB::table('users')->where('role_id', '=', 12)->count();
         $countMitra = DB::table('users')->where('role_id', '=', 12)->count();
-        $countPesawat = DB::table('products')->where('types_id', '=', 1)->count();
-        $countHotel = DB::table('products')->where('types_id', '=', 2)->count();
+        $countPesawat = DB::table('products')->where('types_id', '=', 5)->count();
+        $countHotel = DB::table('products')->where('types_id', '=', 6)->count();
 
         return response()->json([
             'message' => 'success',
@@ -112,7 +112,7 @@ class LandingPageController extends Controller
         $data = User::with('transaction')->get();
 
         $produk = product::with('type')
-        ->where('products.type_id','=', 2)
+        ->where('products.type_id','=', 6)
         ->get();
 
         // ubah json juga
@@ -158,7 +158,7 @@ class LandingPageController extends Controller
         $data = user::with('transaction')->get();
 
         $produk = product::with('type')
-        ->where('products.types_id','=', 2)
+        ->where('products.types_id','=', 6)
         ->get();
 
         // json
@@ -241,7 +241,7 @@ class LandingPageController extends Controller
 
     function tabel_mitra(){
         $data = User::with('role','transaction')
-            ->where('Users.role_id','=',2)
+            ->where('Users.role_id','=',13)
             ->get();
         // json
         return response()->json([

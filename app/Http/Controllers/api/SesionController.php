@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 
-class SessionController extends Controller
+class SesionController extends Controller
 {
     // function index(){
     //     return view('sesi/index');
@@ -30,17 +31,17 @@ class SessionController extends Controller
             if (auth()->user()->role_id == 13) {
                 return response()->json([
                     'message' => 'success',
-                    'redirect' => 'dashboard_admin'
+                    'redirect' => 'admin'
                 ], Response::HTTP_OK);
             } elseif (auth()->user()->role_id == 14) {
                 return response()->json([
                     'message' => 'success',
-                    'redirect' => 'halaman_mitra'
+                    'redirect' => 'mitra'
                 ], Response::HTTP_OK);
             } elseif (auth()->user()->role_id == 15) {
                 return response()->json([
                     'message' => 'success',
-                    'redirect' => 'dashboard'
+                    'redirect' => 'user'
                 ], Response::HTTP_OK);
             }
         } else {

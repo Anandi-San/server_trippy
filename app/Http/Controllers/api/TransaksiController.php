@@ -34,7 +34,6 @@ class TransaksiController extends Controller
 
         return response()->json([
             'message'   => 'success',
-            // roles ya masih belum dapat
             'data'      => $updatedUser
         ],200);
         // return redirect()->back()->with('success', 'Saldo berhasil ditambahkan.');

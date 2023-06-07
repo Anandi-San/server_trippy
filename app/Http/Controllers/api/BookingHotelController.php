@@ -14,7 +14,7 @@ class BookingHotelController extends Controller
         // return view("halaman/pengguna/hotel",[])
         return response()->json([
             'message'   => 'success',
-            'data' => User::with('transaksi')->get(),
+            'data' => User::with('transaction')->get(),
             'product' => room::filter(request(['check_in','decription']))->get()
         ],200);
     }

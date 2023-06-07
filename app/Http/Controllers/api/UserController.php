@@ -16,12 +16,23 @@ class UserController extends Controller
     // tampilkan data dari database
     public function index()
     {
-        return response()->json([
-            'message'   => 'success',
-            // roles ya masih belum dapat
-            'data'      => User::all()
-        ],200);
+        $data = User::with('role')->get();
+    
+        $responseData = [
+            'message' => 'success',
+            'data' => $data->map(function ($user) {
+                return [
+                    'id' => $user->id,
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'role' => $user->role ? $user->role->role : null,
+                ];
+            }),
+        ];
+    
+        return response()->json($responseData, 200);
     }
+    
 
     // create Data
     public function store(Request $request)
